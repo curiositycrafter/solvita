@@ -35,6 +35,29 @@
             background-color: var(--bg-off-white);
         }
 
+        /* Interactive animated background for the whole page */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #e4b04a44 0, #e4b04a00 60%),
+                        radial-gradient(circle at 80% 70%, #1e3a8a33 0, #1e3a8a00 60%),
+                        radial-gradient(circle at 20% 80%, #16653433 0, #16653400 70%);
+            transition: background 0.2s;
+            animation: bgMove 16s linear infinite alternate;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 50% 50%, 80% 70%, 20% 80%;
+            }
+            100% {
+                background-position: 60% 60%, 70% 60%, 30% 90%;
+            }
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -372,9 +395,15 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: 
+                transform 0.3s cubic-bezier(.4,2,.6,1),
+                box-shadow 0.3s cubic-bezier(.4,2,.6,1),
+                filter 0.3s cubic-bezier(.4,2,.6,1),
+                z-index 0.3s;
             opacity: 0;
             transform: translateY(30px);
+            z-index: 1;
+            filter: blur(0) brightness(1);
         }
 
         .team-card.animate {
@@ -382,9 +411,28 @@
             transform: translateY(0);
         }
 
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        .team-card:hover,
+        .team-card:focus-within {
+            transform: scale(1.07) translateY(-8px);
+            box-shadow: 0 12px 40px 0 rgba(30,58,138,0.18), 0 2px 10px rgba(228,176,74,0.12);
+            z-index: 2;
+            filter: blur(0) brightness(1.08);
+            outline: none;
+        }
+
+        /* Blur and dim only siblings when a card is hovered or focused */
+        .team-card:hover ~ .team-card,
+        .team-card:focus-within ~ .team-card {
+            filter: blur(2px) brightness(0.85);
+            opacity: 0.7;
+            z-index: 1;
+            transition: filter 0.3s, opacity 0.3s;
+        }
+        .team-card:not(:hover):not(:focus-within):has(~ .team-card:hover, ~ .team-card:focus-within) {
+            filter: blur(2px) brightness(0.85);
+            opacity: 0.7;
+            z-index: 1;
+            transition: filter 0.3s, opacity 0.3s;
         }
 
         .team-card img {
@@ -602,13 +650,19 @@
                 font-size: 2rem;
             }
         }
+
+        /* Ensure content is above animated bg */
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <div class="logo">
-                <img src="https://via.placeholder.com/100x40?text=SOLVITA+Logo" alt="SOLVITA Logo">
+                <img src="logo.jpeg" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; background: #fff; box-shadow: 0 2px 8px rgba(84, 85, 87, 0.546);" alt="SOLVITA Logo">
                 SOLVITA
             </div>
             <ul class="nav-links">
@@ -732,8 +786,8 @@
                     <p>Innovating sustainable energy solutions for off-grid environments, ensuring reliable power in the most challenging conditions.</p>
                 </div>
                 <div class="team-card">
-                    <img src="k.jpeg" alt="Kiruthika">
-                    <h3>Kirthika</h3>
+                    <img src="k.jpeg" alt="Kiruthika" >
+                    <h3>Kiruthika</h3>
                     <div class="role">CFO, Financial Strategist</div>
                     <p>Ensuring scalability and impact through strategic financial planning, building sustainable pathways for global expansion.</p>
                 </div>
@@ -743,8 +797,8 @@
 
     <section id="contact" class="cta">
         <div class="container">
-            <h2>Together, we can bring resilience to those who need it most</h2>
-            <p>Join us in creating a more resilient world</p>
+            <h2 class="cta-animate">Together, we can bring resilience to those who need it most</h2>
+            <p class="cta-animate" style="animation-delay:0.2s">Join us in creating a more resilient world</p>
             <a href="mailto:thesolvitateam@gmail.com" class="cta-button">Partner with Us</a>
         </div>
     </section>
@@ -769,7 +823,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-logo">
-                    <img src="https://via.placeholder.com/100x40?text=SOLVITA+Logo" alt="SOLVITA Logo">
+                    <img src="logo.jpeg" alt="SOLVITA Logo">
                     <span>SOLVITA</span>
                 </div>
                 <div class="footer-tagline">Resilience. Innovation. Hope.</div>
