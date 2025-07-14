@@ -345,9 +345,25 @@
         /* Team Section */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            justify-items: center;    /* Center cards in their grid cells */
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        /* 2 columns for medium screens */
+        @media (max-width: 1100px) {
+            .team-grid {
+                grid-template-columns: repeat(2, minmax(250px, 1fr));
+            }
+        }
+        /* 1 column for small screens */
+        @media (max-width: 700px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .team-card {
@@ -660,21 +676,21 @@
             </div>
             <div class="use-cases-grid">
                 <div class="use-case-card">
-                    <img src="https://via.placeholder.com/600x400?text=Disaster+Response" alt="Disaster Response">
+                    <img src="dr.jpeg" alt="Disaster Response">
                     <div class="use-case-content">
                         <h3>Disaster Response</h3>
                         <p>SOLVITA powers relief efforts in post-earthquake zones, providing essential services when traditional infrastructure fails.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="https://via.placeholder.com/600x400?text=Rural+Clinics" alt="Rural Clinics">
+                    <img src="rhc.jpeg" alt="Rural Clinics">
                     <div class="use-case-content">
                         <h3>Rural Clinics</h3>
                         <p>Enabling comprehensive health diagnostics in remote areas, bringing modern medical capabilities to underserved communities.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
-                    <img src="https://via.placeholder.com/600x400?text=Off-grid+Villages" alt="Off-grid Villages">
+                    <img src="ogv.jpeg" alt="Off-grid Villages">
                     <div class="use-case-content">
                         <h3>Off-grid Villages</h3>
                         <p>Providing sustainable power and clean water for entire communities, fostering development and improving quality of life.</p>
@@ -692,31 +708,31 @@
             </div>
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/200x200?text=Wordson+Jayakumar" alt="Wordson Jayakumar">
+                    <img src="w.jpeg" alt="Wordson Jayakumar">
                     <h3>Wordson Jayakumar</h3>
                     <div class="role">CEO, Strategic Visionary</div>
                     <p>Driving SOLVITA's mission to empower underserved communities with innovative solutions that create lasting positive impact.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/200x200?text=Vignesh" alt="Vignesh">
+                    <img src="v.jpeg" alt="Vignesh">
                     <h3>Vignesh</h3>
                     <div class="role">CTO, AI and IoT Leader</div>
                     <p>Pioneering cutting-edge technology for resilient systems, integrating AI and IoT to create truly transformative solutions.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/200x200?text=Ajay+Vardhanan" alt="Ajay Vardhanan">
+                    <img src="a.jpeg" alt="Ajay Vardhanan">
                     <h3>Ajay Vardhanan</h3>
                     <div class="role">COO, Mechanical Product Design</div>
                     <p>Crafting durable, user-focused products that withstand harsh conditions while maintaining optimal performance and usability.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/200x200?text=Subash" alt="Subash">
+                    <img src="s.jpeg" alt="Subash">
                     <h3>Subash</h3>
                     <div class="role">Lead, Energy Systems</div>
                     <p>Innovating sustainable energy solutions for off-grid environments, ensuring reliable power in the most challenging conditions.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/200x200?text=Kirthika" alt="Kirthika">
+                    <img src="k.jpeg" alt="Kiruthika">
                     <h3>Kirthika</h3>
                     <div class="role">CFO, Financial Strategist</div>
                     <p>Ensuring scalability and impact through strategic financial planning, building sustainable pathways for global expansion.</p>
@@ -729,7 +745,7 @@
         <div class="container">
             <h2>Together, we can bring resilience to those who need it most</h2>
             <p>Join us in creating a more resilient world</p>
-            <a href="mailto:contact@solvita.org" class="cta-button">Partner with Us</a>
+            <a href="mailto:thesolvitateam@gmail.com" class="cta-button">Partner with Us</a>
         </div>
     </section>
 
@@ -738,13 +754,14 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Information</h3>
-                    <p>📧 Email: contact@solvita.org</p>
-                    <p>📞 Phone: +91 98765 43210</p>
+                    <a href="mailto:thesolvitateam@gmail.com" style="color: white; text-decoration: none;">
+                        <p>📧 Email: thesolvitateam@gmail.com</p></a>
+                    <p>📞 Phone: +91 94877 51368</p>
                 </div>
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-links">
-                        <a href="#">📧</a>
+                        <a href="mailto:thesolvitateam@gmail.com">📧</a>
                         <a href="#">🔗</a>
                         <a href="#">🐦</a>
                     </div>
