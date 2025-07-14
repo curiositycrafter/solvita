@@ -435,38 +435,58 @@
             transition: filter 0.3s, opacity 0.3s;
         }
 
-        .team-card img {
-            width: 120px;
-            height: 120px;
+        .team-img-hover-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .team-img-hover-wrapper img {
+            display: block;
+            width: 190px;
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 1rem;
             border: 3px solid var(--secondary-gold);
-            transition: transform 0.3s ease;
+            transition: filter 0.3s;
+            position: relative;
+            z-index: 0; /* Make sure image is below overlay */
         }
-
-        .team-card:hover img {
-            transform: scale(1.05);
+        .img-hover-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            background: rgba(30,41,59,0.65);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 2; /* Make sure overlay is above image */
         }
-
-        .team-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary-blue);
+        .team-img-hover-wrapper:hover .img-hover-overlay,
+        .team-img-hover-wrapper:focus-within .img-hover-overlay {
+            opacity: 1;
+            pointer-events: auto;
         }
-
-        .team-card .role {
-            color: var(--primary-green);
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .team-img-hover-wrapper:hover img,
+        .team-img-hover-wrapper:focus-within img {
+            filter: blur(2px) brightness(0.7);
         }
-
-        .team-card p {
-            color: var(--text-medium);
-            line-height: 1.6;
-            font-size: 0.9rem;
+        .img-hover-overlay a img {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.10);
+            transition: transform 0.2s, box-shadow 0.2s;
+            filter: none !important; /* Prevent inherited blur */
+            z-index: 3;
+        }
+        .img-hover-overlay a:hover img {
+            transform: scale(1.15);
+            box-shadow: 0 4px 16px rgba(30,58,138,0.18);
         }
 
         /* CTA Section */
@@ -656,6 +676,60 @@
             position: relative;
             z-index: 1;
         }
+
+        .team-img-hover-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .team-img-hover-wrapper img {
+            display: block;
+            width: 190px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-gold);
+            transition: filter 0.3s;
+            position: relative;
+            z-index: 0; /* Make sure image is below overlay */
+        }
+        .img-hover-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            background: rgba(30,41,59,0.65);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 2; /* Make sure overlay is above image */
+        }
+        .team-img-hover-wrapper:hover .img-hover-overlay,
+        .team-img-hover-wrapper:focus-within .img-hover-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .team-img-hover-wrapper:hover img,
+        .team-img-hover-wrapper:focus-within img {
+            filter: blur(2px) brightness(0.7);
+        }
+        .img-hover-overlay a img {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.10);
+            transition: transform 0.2s, box-shadow 0.2s;
+            filter: none !important; /* Prevent inherited blur */
+            z-index: 3;
+        }
+        .img-hover-overlay a:hover img {
+            transform: scale(1.15);
+            box-shadow: 0 4px 16px rgba(30,58,138,0.18);
+        }
     </style>
 </head>
 <body>
@@ -762,32 +836,97 @@
             </div>
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="w.jpeg" alt="Wordson Jayakumar">
+                    <div class="team-img-hover-wrapper">
+                        <img src="w.jpeg" alt="Wordson Jayakumar">
+                        <div class="img-hover-overlay">
+                            <a href="https://github.com/ajay" target="_blank" aria-label="GitHub">
+                                <img src="github.png" alt="GitHub" />
+                            </a>
+                            <a href="https://linkedin.com/in/ajay" target="_blank" aria-label="LinkedIn">
+                                <img src="linkedin.webp" alt="LinkedIn" />
+                            </a>
+                            <a href="https://instagram.com/ajay" target="_blank" aria-label="Instagram">
+                                <img src="insta.avif" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
                     <h3>Wordson Jayakumar</h3>
                     <div class="role">CEO, Strategic Visionary</div>
                     <p>Driving SOLVITA's mission to empower underserved communities with innovative solutions that create lasting positive impact.</p>
                 </div>
                 <div class="team-card">
-                    <img src="v.jpeg" alt="Vignesh">
-                    <h3>Vignesh</h3>
+                    <div class="team-img-hover-wrapper">
+                        <img src="v.jpeg" alt="Vignesh">
+                        <div class="img-hover-overlay">
+                            <a href="https://github.com/ajay" target="_blank" aria-label="GitHub">
+                                <img src="github.png" alt="GitHub" />
+                            </a>
+                            <a href="https://linkedin.com/in/ajay" target="_blank" aria-label="LinkedIn">
+                                <img src="linkedin.webp" alt="LinkedIn" />
+                            </a>
+                            <a href="https://instagram.com/ajay" target="_blank" aria-label="Instagram">
+                                <img src="insta.avif" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
+                    <h3>Vignesh V</h3>
                     <div class="role">CTO, AI and IoT Leader</div>
                     <p>Pioneering cutting-edge technology for resilient systems, integrating AI and IoT to create truly transformative solutions.</p>
                 </div>
                 <div class="team-card">
-                    <img src="a.jpeg" alt="Ajay Vardhanan">
-                    <h3>Ajay Vardhanan</h3>
+                    <div class="team-img-hover-wrapper">
+                        <img src="a.jpeg" alt="Ajay Vardhanan">
+                        <div class="img-hover-overlay">
+                            <a href="https://github.com/ajay" target="_blank" aria-label="GitHub">
+                                <img src="github.png" alt="GitHub" />
+                            </a>
+                            <a href="https://linkedin.com/in/ajay" target="_blank" aria-label="LinkedIn">
+                                <img src="linkedin.webp" alt="LinkedIn" />
+                            </a>
+                            <a href="https://instagram.com/ajay" target="_blank" aria-label="Instagram">
+                                <img src="insta.avif" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
+                    <h3>Ajay Vardhanan J V</h3>
                     <div class="role">COO, Mechanical Product Design</div>
                     <p>Crafting durable, user-focused products that withstand harsh conditions while maintaining optimal performance and usability.</p>
                 </div>
                 <div class="team-card">
-                    <img src="s.jpeg" alt="Subash">
-                    <h3>Subash</h3>
+                    <div class="team-img-hover-wrapper">
+                        <img src="s.jpeg" alt="Subash">
+                        <div class="img-hover-overlay">
+                            <a href="https://github.com/ajay" target="_blank" aria-label="GitHub">
+                                <img src="github.png" alt="GitHub" />
+                            </a>
+                            <a href="https://linkedin.com/in/ajay" target="_blank" aria-label="LinkedIn">
+                                <img src="linkedin.webp" alt="LinkedIn" />
+                            </a>
+                            <a href="https://instagram.com/ajay" target="_blank" aria-label="Instagram">
+                                <img src="insta.avif" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
+                    <h3>Subash K</h3>
                     <div class="role">Lead, Energy Systems</div>
                     <p>Innovating sustainable energy solutions for off-grid environments, ensuring reliable power in the most challenging conditions.</p>
                 </div>
                 <div class="team-card">
-                    <img src="k.jpeg" alt="Kiruthika" >
-                    <h3>Kiruthika</h3>
+                    <div class="team-img-hover-wrapper">
+                        <img src="k.jpeg" alt="Kiruthika" >
+                        <div class="img-hover-overlay">
+                            <a href="https://github.com/ajay" target="_blank" aria-label="GitHub">
+                                <img src="github.png" alt="GitHub" />
+                            </a>
+                            <a href="https://linkedin.com/in/ajay" target="_blank" aria-label="LinkedIn">
+                                <img src="linkedin.webp" alt="LinkedIn" />
+                            </a>
+                            <a href="https://instagram.com/ajay" target="_blank" aria-label="Instagram">
+                                <img src="insta.avif" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
+                    <h3>Kiruthika P</h3>
                     <div class="role">CFO, Financial Strategist</div>
                     <p>Ensuring scalability and impact through strategic financial planning, building sustainable pathways for global expansion.</p>
                 </div>
